@@ -36,6 +36,9 @@ descripY(d1,d1$y)
 # weibull, gamma, logis, lnorm, norm, cauchy, beta, chi, chisq, exp, f, pareto, t, unif
 # binom, geom, hyper, nbinom, 
 
+# https://n9.cl/m5ryf
+
+
 
 #EVALUACION del comportamiento.
 f1<-fitdist(d1$y, "weibull")
