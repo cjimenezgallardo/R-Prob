@@ -1,7 +1,7 @@
 
 
 library(psych)
-library (EnvStats)
+library(EnvStats)
 library(fitdistrplus)
 library(nortest)
 library(ggplot2)
@@ -14,22 +14,22 @@ library(caret)
 
 #d1<-NOMBRE EXTREMADAMENTE LARGO DE UN ARCHIVO.XLSX
 
-d0<-Dry_Bean_Dataset
+d1<-AG_P_tiempos_de_reparacion
 
 #d1<-data.frame(d01)
 #luego tambien se pueden cambiar los nombres de las variables si no son "comodas"
 #names(d1)[2]=c("y")
 #el valor [2] depende de la columna que quieres cambiar nombre
 
-names(d0)[2]=c("y")
+names(d1)[2]=c("y")
 
 
-#  muestrear para data set Grandes.. superior a 5000 datos
+#  muestrear para data set Grandes.. superior a 5000 datos, ayuda a EVALUAR EL MODELO.
 
 datosindex=createDataPartition(d0$y,p=0.20)$Resample1 #0.1, porcentaje de elementos para el bootstrap
 d1<-as.data.frame(d0[datosindex,c(1)])
 
-descripY(d1,d1$y)
+descripYG(d1,d1$y,NULL)
 
 
 # lista de Ditribuciones  
@@ -40,10 +40,14 @@ descripY(d1,d1$y)
 
 
 
+
+
+
+
 #EVALUACION del comportamiento.
 f1<-fitdist(d1$y, "weibull")
 f2<-fitdist(d1$y, "gamma")
-f3<-fitdist(d1$y, "logis")
+f3<-fitdist(d1$y, "normal")
 f4<-fitdist(d1$y,"lnorm")
 par(mfrow=c(2,2))
 plot.legend<-c("Weibull","Gamma","Normal","Lnorm")
@@ -62,7 +66,7 @@ S#de acuerdo a lo anterior se observa un comportamiento ....
 
 ks.test(d1$y,"pweibull",shape=f1[[1]][1],scale=f1[[1]][2])
 ks.test(d1$y,"pgamma",shape=f2[[1]][1],rate=f2[[1]][2])
-ks.test(d1$y,"plogis",f3[[1]][1],f3[[1]][2])
+ks.test(d1$y,"pnorm",f3[[1]][1],f3[[1]][2])
 ks.test(d1$y,"plnorm",f4[[1]][1],f4[[1]][2])
 
 #test para prueba de normalidad
