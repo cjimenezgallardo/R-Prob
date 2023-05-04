@@ -14,7 +14,7 @@ library(caret)
 
 #d1<-NOMBRE EXTREMADAMENTE LARGO DE UN ARCHIVO.XLSX
 
-d1<-AG_P_tiempos_de_reparacion
+d1<-AG_P_tiempos_de_reparacion 
 
 #d1<-data.frame(d01)
 #luego tambien se pueden cambiar los nombres de las variables si no son "comodas"
