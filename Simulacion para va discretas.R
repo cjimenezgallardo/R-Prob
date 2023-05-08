@@ -14,6 +14,9 @@ library(caret)
 library(tidyverse)
 library(fitdistrplus)
 library(mosaic)
+library(rsample)
+
+
 options(scipen=999) # 1 para notacion cientifica
 
 pe<- data.frame(0) # definimos un vector de numerocp
@@ -64,26 +67,23 @@ mosaic::plotDist(dist="binom",size=100, prob=p,xlab=paste("x ", min(tablaPb1$x),
 
 
 
-
+#POR bootstraps
 
 set.seed(354852)
 
-calculos <- bootstraps(dataej,times=100)
+calculos <- bootstraps(dataej,times=10)
 
-fcb01 <- calculos$splits[[1]]
+for (j in 1:10) {
 
-fcb01
+  fcb01 <- calculos$splits[[j]]
 
-ds111 <- as.data.frame(fcb01)
+  ds111 <- as.data.frame(fcb01)
 
-
-
-
-
-tS1 <- ds111 %>% 
-  group_by(corte) %>% 
-  summarise(tot=n()) %>% 
-  mutate(prop=tot/sum(tot))
+  tS1 <- ds111 %>% 
+    group_by(corte) %>% 
+    summarise(tot=n()) %>% 
+    mutate(prop=tot/sum(tot))
+}
 
 
 

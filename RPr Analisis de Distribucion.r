@@ -49,18 +49,18 @@ f1<-fitdist(d1$y, "weibull")
 f2<-fitdist(d1$y, "gamma")
 f3<-fitdist(d1$y, "normal")
 f4<-fitdist(d1$y,"lnorm")
-par(mfrow=c(2,2))
+
 plot.legend<-c("Weibull","Gamma","Normal","Lnorm")
 denscomp(list(f1,f2,f3,f4), legendtext=plot.legend)
 qqcomp(list(f1,f2,f3,f4), legendtext=plot.legend)
 cdfcomp(list(f1,f2,f3,f4), legendtext=plot.legend)
 ppcomp(list(f1,f2,f3,f4), legendtext=plot.legend)
-par(mfrow=c(1,1))
+
 
 #confirmacion, quedese con aquel indicador menor (Akaike)
 gofstat(list(f1,f2,f3,f4))
 
-S#de acuerdo a lo anterior se observa un comportamiento ....
+#de acuerdo a lo anterior se observa un comportamiento ....
 #evaluar con la prueba de bondad de ajuste 
 
 
